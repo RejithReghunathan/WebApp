@@ -101,7 +101,7 @@
     <div class="main">
         <p class="sign" align="center">Sign Up</p>
         <form class="form1">
-            <input class="un " type="email" align="center" name="email" id="email" placeholder="Email">
+            <input class="un " type="email" align="center" name="email" id="email" placeholder="Email" required>
             <span id="invalid"  class="text-danger d-flex justify-content-center" style="display: none !important;">Email ID already exists</span>
             <input type="text" class="un " name="name" align="center" id="name" placeholder="Name">
             <input class="pass" type="password" align="center" name="password" id="password" placeholder="Password">
@@ -128,7 +128,7 @@
                     $('#invalid').show()
                 }
                 else{
-                    window.location.href="signup"
+                    window.location.href="login"
                 }
             }
 

@@ -4,8 +4,10 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const session = require('express-session')
+const Handlebars = require('handlebars')
 
 var usersRouter = require("./routes/user");
+var adminRouter = require('./routes/admin')
 
 var db = require("./cofiq/connection");
 
@@ -39,6 +41,7 @@ db.connect((err) => {
 });
 
 app.use("/", usersRouter);
+app.use("/", adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -4,25 +4,42 @@ var router = express.Router();
 var user = require("../controllers/user");
 
 router.get("/", function (req, res) {
+  let role = req.session.role
   let ifSession = req.session.name;
   if (ifSession) {
-    res.render("home",{userName:ifSession});
+    res.render("home",{userName:ifSession,roles:role});
+  } else {
+    res.render("login");
+  }
+});
+router.get("/login", function (req, res) {
+  let role = req.session.role
+  let ifSession = req.session.name;
+  if (ifSession) {
+    res.render("home",{userName:ifSession,roles:role});
   } else {
     res.render("login");
   }
 });
 router.get("/signup", (req, res) => {
+  let role = req.session.role
   let ifSession = req.session.name;
   if (ifSession) {
-    res.render("home",{userName:ifSession});
+    res.render("home",{userName:ifSession,roles:role});
   } else {
     res.render("signup");
   }
 });
 router.get("/home", (req, res) => {
+  let role = req.session.role
   let ifSession = req.session.name;
   if (ifSession) {
-    res.render("home",{userName:ifSession});
+    if(role===1){
+    res.render("home",{userName:ifSession,roles:role});
+    }
+    else{
+      res.redirect('admin-home')
+    }
   } else {
     res.render("login");
   }
@@ -30,17 +47,19 @@ router.get("/home", (req, res) => {
 
 router.post("/login", (req, res) => {
   let ifSession = req.session.name;
+  let role = req.session.role
   if (ifSession) {
-    res.render("home",{userName:ifSession});
+    res.render("home",{userName:ifSession,roles:role});
   } else {
     user
       .userLogin(req.body)
       .then((response) => {
         req.session.name = response.user.name;
-        res.send({ user: true });
+        req.session.role = response.user.role
+        res.send({ user: true,roles:role });
       })
       .catch((response) => {
-        res.send({ user: false });
+        res.send({ user: false,roles:role });
       });
   }
 });
