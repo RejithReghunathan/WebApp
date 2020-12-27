@@ -51,18 +51,18 @@
       </tr>
     </thead>
     <tbody>
-      {{#each data}}
+      {{#with datas}}
       <tr>
-        <th scope="row">{{@index}}</th>
-        <td>{{this.name}}</td>
-        <td>{{this.email}}</td>
+        <th scope="row">1</th>
+        <td>{{name}}</td>
+        <td>{{email}}</td>
         <td>user</td>
-        <td><button class="btn btn-info"><a href="/edit/{{this._id}}" class="text-white"
+        <td><button class="btn btn-info"><a href="/edit/{{_id}}" class="text-white"
               style="text-decoration: none;">Edit</a></button></td>
-        <td><button class="btn btn-danger"><a href="/delete/{{this._id}}" class="text-white"
+        <td><button class="btn btn-danger"><a href="/delete/{{_id}}" class="text-white"
               style="text-decoration: none;">Delete</a></button></td>
       </tr>
-      {{/each}}
+      {{/with}}
     </tbody>
   </table>
   <br>

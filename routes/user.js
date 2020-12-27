@@ -7,7 +7,12 @@ router.get("/", function (req, res) {
   let role = req.session.role
   let ifSession = req.session.name;
   if (ifSession) {
+    if(role===0){
+      res.redirect('admin-home')
+    }
+    else{
     res.render("home",{userName:ifSession,roles:role});
+    }
   } else {
     res.render("login");
   }
@@ -16,7 +21,12 @@ router.get("/login", function (req, res) {
   let role = req.session.role
   let ifSession = req.session.name;
   if (ifSession) {
+    if(role===0){
+      res.redirect('admin-home')
+    }
+    else{
     res.render("home",{userName:ifSession,roles:role});
+    }
   } else {
     res.render("login");
   }
@@ -25,7 +35,12 @@ router.get("/signup", (req, res) => {
   let role = req.session.role
   let ifSession = req.session.name;
   if (ifSession) {
+    if(role===0){
+      res.redirect('admin-home')
+    }
+    else{
     res.render("home",{userName:ifSession,roles:role});
+    }
   } else {
     res.render("signup");
   }
@@ -49,7 +64,12 @@ router.post("/login", (req, res) => {
   let ifSession = req.session.name;
   let role = req.session.role
   if (ifSession) {
+    if(role===0){
+      res.redirect('admin-home')
+    }
+    else{
     res.render("home",{userName:ifSession,roles:role});
+    }
   } else {
     user
       .userLogin(req.body)

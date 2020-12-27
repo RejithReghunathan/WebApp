@@ -38,5 +38,14 @@ module.exports={
                 resolve(response)
             })
         })
+    },
+    SearchUser:(userName)=>{
+        return new Promise(async(resolve,reject)=>{
+          let user= await db.get().collection('user').findOne({name:userName}).then((result)=>{
+                resolve(result)
+            }).catch((err)=>{
+                reject(err)
+            })
+        })
     }
 }
